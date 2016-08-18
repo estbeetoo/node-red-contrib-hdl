@@ -55,6 +55,7 @@ module.exports = function(RED) {
           gateway: node.host,
           port: node.port
         });
+        handler(node.hdljsconn);
       }
       else
         throw 'Unsupported mode[' + config.mode + ']'
