@@ -169,20 +169,20 @@ module.exports = function(RED) {
 
     node.receiveCommand = function(command) {
       debug('receiveCommand');
-      debug('hdl command received target[' + command.target + ']data[' + (Buffer.isBuffer(command.data) ? command.data.toString('hex') : command.data.toString()) + ']sender[' + command.sender + ']');
+      debug('hdl command received target[' + command.target.subnet + '.' + command.target.id + ']data[' + (Buffer.isBuffer(command.data) ? command.data.toString('hex') : util.inspect(command.data)) + ']sender[' + command.sender + ']');
       node.send({
-        topic: '' + command.target,
-        payload: Buffer.isBuffer(command.data) ? command.data.toString('hex') : command.data.toString(),
+        topic: command.target.subnet + '.' + command.target.id,
+        payload: Buffer.isBuffer(command.data) ? command.data.toString('hex') : util.inspect(command.data),
         sender: command.sender,
         type: 'command'
       });
     };
     node.receiveBroadcast = function(command) {
       debug('receiveBroadcast');
-      debug('hdl broadcast received target[' + command.target + ']data[' + (Buffer.isBuffer(command.data) ? command.data.toString('hex') : command.data.toString()) + ']sender[' + command.sender + ']');
+      debug('hdl broadcast received target[' + command.target.subnet + '.' + command.target.id + ']data[' + (Buffer.isBuffer(command.data) ? command.data.toString('hex') : util.inspect(command.data)) + ']sender[' + command.sender + ']');
       node.send({
-        topic: '' + command.target,
-        payload: Buffer.isBuffer(command.data) ? command.data.toString('hex') : command.data.toString(),
+        topic: command.target.subnet + '.' + command.target.id,
+        payload: Buffer.isBuffer(command.data) ? command.data.toString('hex') : util.inspect(command.data),
         sender: command.sender,
         type: 'broadcast'
       });
