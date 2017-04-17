@@ -134,17 +134,14 @@
 </script>
 
 <script type="text/x-red" data-help-name="hdl-in">
-    <p>Use this to <b>inject</b> flows from HDL telegrams on the bus<br/>
-   	<b>msg.topic</b> will be: 
-    	<p> - 'read': when a read request arrives on the bus</p>
-    	<p> - 'respond': when another HDL device responds to a read request on the bus</p>
-    	<p> - 'write': when somebody writes a value to a HDL group address.</p>
-    	<br/>
-    	<b>msg.payload</b> will have the format: {width: X, value: Y}
-    	<p> - srcphy: source <b>physical</b> address (eg.'1.1.100')</p>
-    	<p> - dstgad: destination <b>group</b> address (eg.'1/2/3')</p>
-    	<p> - value: the actual value received</p>
-    	<p> - dpt: the datapoint type <b>bits</b> of the telegram</p>
+    <p>
+      Use this to <b>inject</b> flows from HDL telegrams on the bus
+      <br/>
+   	  <b>msg.topic</b> will contain device number of target - netid + '.' + deviceid (example: <code>1.3</code>)
+      <br/>
+      <b>msg.payload</b> will have value
+      <br/>
+      <b>msg.sender</b> will contain information about the object that sent the telegram
     </p>
 
 </script>
